@@ -1,0 +1,32 @@
+pkgname=qwerty-antznin
+pkgver=0.9
+pkgrel=1
+pkgdesc="QWERTY keyboard layout for francophone developers"
+arch=("any")
+url="https://qwerty-lafayette.org/"
+license=("WTFPL")
+depends=("xorg-server")
+makedepends=(
+    "python-pip"
+    "python-virtualenv"
+)
+source=(
+    qwerty-antznin.toml
+)
+sha256sums=(
+    e96996668d9793858f7ae6dd7e04c4c627422f86572b8cc5319f48ca35942405
+)
+
+build() {
+    virtualenv .venv
+    .venv/bin/pip install kalamine
+    mkdir -p "${srcdir}"/build/usr/share/X11/xkb/symbols
+    touch "${srcdir}"/build/usr/share/X11/xkb/symbols/fr
+    export XKB_CONFIG_ROOT="${srcdir}/build/usr/share/X11/xkb"
+    .venv/bin/xkalamine install qwerty-antznin.toml
+}
+
+package() {
+    install -d "${pkgdir}"/usr/share/X11/xkb/symbols
+    install -m 0644 "${srcdir}/build/usr/share/X11/xkb/symbols/fr" "${pkgdir}/usr/share/X11/xkb/symbols/custom"
+}
