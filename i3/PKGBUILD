@@ -1,0 +1,51 @@
+pkgname=i3
+pkgver=4.23
+pkgrel=1
+pkgdesc='An improved dynamic tiling window manager'
+arch=('i686' 'x86_64')
+url='http://i3wm.org/'
+license=('BSD')
+provides=('i3-wm')
+conflicts=('i3-wm' 'i3-gaps' 'i3-gaps-next-git')
+groups=('i3' 'i3-vcs')
+depends=('xcb-util-keysyms' 'xcb-util-wm' 'libev' 'yajl'
+         'startup-notification' 'pango' 'perl' 'xcb-util-cursor' 'xcb-util-xrm'
+         'libxkbcommon-x11')
+makedepends=('git' 'bison' 'flex' 'asciidoc' 'xmlto' 'meson')
+optdepends=('i3lock: For locking your screen.'
+            'i3status: To display system information with a bar.')
+options=('docs')
+source=(
+  "https://github.com/i3/i3/archive/refs/tags/${pkgver}.tar.gz"
+  "0001-Add-inactive_focused_workspace-support.patch"
+)
+sha256sums=(
+  '6a546b5e12a021e67c6fe108c9d1db9b36de88a67f5e4ede97df0bfc4ce1446d'
+  'ff8a611268624477e266eed913d0fd553da2e0184af59f5c512257b7264948e0'
+)
+
+prepare() {
+  patch \
+    --directory "${srcdir}/${pkgname}-${pkgver}" \
+    --forward \
+    --strip=1 \
+    --input ../0001-Add-inactive_focused_workspace-support.patch
+}
+
+build() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  arch-meson \
+    -Ddocs=true \
+    -Dmans=true \
+  ../build
+  meson compile -C ../build
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  DESTDIR="${pkgdir}" meson install -C ../build
+
+  install -Dt "${pkgdir}/usr/share/licenses/${pkgname}" -m644 LICENSE
+}
+
+# vim:set ts=2 sw=2 et:
