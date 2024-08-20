@@ -1,0 +1,12 @@
+pkgbase = language-server-bitbake
+	pkgdesc = Bitbake language support
+	pkgver = 2.6.0
+	pkgrel = 1
+	url = https://github.com/yoctoproject/vscode-bitbake
+	arch = any
+	license = MIT
+	makedepends = npm
+	source = https://registry.npmjs.org/language-server-bitbake/-/language-server-bitbake-2.6.0.tgz
+	sha256sums = 4a1b239bb07853e1cbfc766fdccbd576d9c0242f4785dc8fb7266623f171b5d1
+
+pkgname = language-server-bitbake

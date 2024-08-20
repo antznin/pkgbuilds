@@ -1,0 +1,16 @@
+#!/usr/bin/env -S sh -c 'nvchecker -cnvchecker.toml --logger=json | jq -r '\''.version | sub("^v"; "") | split("-") | .[-1]'\'' | xargs -i{} sed -i "s/^\\(pkgver=\\).*/\\1{}/" $0'
+# shellcheck shell=bash disable=SC2034,SC2154
+pkgname=language-server-bitbake
+pkgver=2.6.0
+pkgrel=1
+pkgdesc="Bitbake language support"
+arch=(any)
+url=https://github.com/yoctoproject/vscode-bitbake
+license=(MIT)
+makedepends=(npm)
+source=("https://registry.npmjs.org/$pkgname/-/$pkgname-$pkgver.tgz")
+sha256sums=('4a1b239bb07853e1cbfc766fdccbd576d9c0242f4785dc8fb7266623f171b5d1')
+
+package() {
+	npm install -g --prefix "$pkgdir/usr" "$pkgname-$pkgver.tgz"
+}
