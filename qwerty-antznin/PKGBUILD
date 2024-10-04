@@ -1,5 +1,5 @@
 pkgname=qwerty-antznin
-pkgver=0.9.1
+pkgver=0.9.2
 pkgrel=1
 pkgdesc="QWERTY keyboard layout for francophone developers"
 arch=("any")
@@ -14,7 +14,7 @@ source=(
     qwerty-antznin.toml
 )
 sha256sums=(
-    40d07ebf0ea9a864430fea0825ce3817e2ecd3c77b81c7e0bb4b77d86ede9067
+    8894abfbf0f5fda66ed491093d3215f8b19b1c57b65dfd220e2119e43f29df1d
 )
 
 build() {
