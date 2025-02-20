@@ -1,6 +1,6 @@
 pkgbase = qwerty-antznin
 	pkgdesc = QWERTY keyboard layout for francophone developers
-	pkgver = 0.9.1
+	pkgver = 0.9.3
 	pkgrel = 1
 	url = https://qwerty-lafayette.org/
 	arch = any
@@ -9,6 +9,6 @@ pkgbase = qwerty-antznin
 	makedepends = python-virtualenv
 	depends = xorg-server
 	source = qwerty-antznin.toml
-	sha256sums = 40d07ebf0ea9a864430fea0825ce3817e2ecd3c77b81c7e0bb4b77d86ede9067
+	sha256sums = c03094612d62eb5d226bf74822024ae814166490459c0ed89a60517461cc43ed
 
 pkgname = qwerty-antznin
