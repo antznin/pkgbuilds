@@ -1,6 +1,6 @@
 pkgbase = qwerty-antznin
 	pkgdesc = QWERTY keyboard layout for francophone developers
-	pkgver = 0.9.3
+	pkgver = 0.9.4
 	pkgrel = 1
 	url = https://qwerty-lafayette.org/
 	arch = any
